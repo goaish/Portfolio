@@ -1,0 +1,13 @@
+document.getElementById('submitBtn').addEventListener('click', function() {
+  const formTitle = document.getElementById('formTitle').value;
+  const question = document.getElementById('question').value;
+  const formOutput = document.getElementById('formOutput');
+
+  if (formTitle && question) {
+      formOutput.innerHTML = `<h2>${formTitle}</h2><p>${question}</p>`;
+      document.getElementById('formTitle').value = '';
+      document.getElementById('question').value = '';
+  } else {
+      alert('Please fill in both fields.');
+  }
+});
