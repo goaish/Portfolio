@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Aishwarya Portfolio</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Hey, I’m Aishwarya , a Computer Science Engineering undergraduate at IGDTUW and Smart India Hackathon Winner. I build secure and scalable full-stack products with AI and cybersecurity integration, backed by strong fundamentals in DSA, DBMS, and OS. With internship experience at DRDO and TEC, I love solving real-world problems through clean architecture, performance-focused systems, and premium user experiences." />
+  <meta name="keywords" content="Aishwarya Portfolio, Full Stack Developer, React, Node, Flutter, DRDO, SIH Winner, AES-128, AI Intrusion Detection" />
+  <meta name="author" content="Aishwarya" />
+
+  <!-- OG -->
+  <meta property="og:title" content="Aishwarya | Portfolio" />
+  <meta property="og:description" content="SIH Winner • DRDO Research Intern • Full Stack Developer • AI + Security" />
+  <!-- Use your photo as OG image -->
+  <meta property="og:image" content="passport_size.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aishwarya Portfolio" />
+  <meta name="twitter:description" content="SIH Winner • DRDO Research Intern • Full Stack Developer • AI + Security" />
+  <meta name="twitter:image" content="passport_size.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+
+  <style>
+    :root {
+      --apple-bg: #000000;
+      --card-bg: rgba(255,255,255,0.04);
+      --border-color: rgba(255,255,255,0.08);
+      --accent: #3b82f6;
+      --muted: rgba(255,255,255,0.65);
+      --muted2: rgba(255,255,255,0.45);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(59,130,246,0.14), transparent 55%),
+        radial-gradient(1000px 500px at 80% 10%, rgba(99,102,241,0.12), transparent 55%),
+        var(--apple-bg);
+      color: white;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    .glass-nav {
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: saturate(180%) blur(18px);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .bento-card {
+      background: var(--card-bg);
+      border-radius: 26px;
+      border: 1px solid var(--border-color);
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+      transition: left 0.6s ease;
+    }
+    .bento-card:hover::before { left: 100%; }
+    .bento-card:hover {
+      border-color: rgba(255,255,255,0.18);
+      transform: translateY(-4px);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+      background: rgba(255,255,255,0.06);
+    }
+    .text-gradient {
+      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.55) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+      color: rgba(255,255,255,0.8);
+    }
+    .pill:hover { transform: scale(1.05); background: rgba(255,255,255,0.10); }
+    .accent { color: var(--accent); }
+    .btn {
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-primary { background: white; color: black; }
+    .btn-primary:hover { background: rgba(255,255,255,0.90); transform: translateY(-1px); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+    .section-title {
+      font-size: 12px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      font-weight: 800;
+    }
+    .divider { height: 1px; background: rgba(255,255,255,0.08); margin: 18px 0; }
+    a:focus { outline: 2px solid rgba(59,130,246,0.75); outline-offset: 3px; border-radius: 12px; }
+
+    /* Avatar */
+    .avatar-wrap{
+      border-radius: 26px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+      position: relative;
+    }
+    .avatar-wrap::after{
+      content:'';
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.22), transparent 55%),
+                  radial-gradient(circle at 70% 20%, rgba(99,102,241,0.18), transparent 55%);
+      filter: blur(24px);
+      z-index:0;
+    }
+    .avatar-img{
+      position: relative;
+      z-index: 1;
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between text-xs tracking-widest uppercase font-semibold">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+        <span class="text-white text-sm">Aishwarya.dev</span>
+        <span class="hidden sm:inline-flex pill">Portfolio</span>
+      </div>
+
+      <div class="hidden md:flex gap-8 text-white/55">
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#skills" class="hover:text-white transition">Skills</a>
+        <a href="#experience" class="hover:text-white transition">Experience</a>
+        <a href="#projects" class="hover:text-white transition">Projects</a>
+        <a href="#achievements" class="hover:text-white transition">Achievements</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </div>
+
+      <div class="flex gap-4 text-white/60">
+        <a href="https://github.com/goaish" target="_blank" class="hover:text-white transition">GitHub</a>
+        <a href="https://www.linkedin.com/in/aishwarya-7b20a532a/" target="_blank" class="hover:text-white transition">LinkedIn</a>
+        <a href="https://leetcode.com/u/itsaish/" target="_blank" class="hover:text-white transition">LeetCode</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+
+    <!-- ABOUT -->
+    <section id="about" class="mb-20">
+      <div class="grid grid-cols-12 gap-6">
+
+        <!-- LEFT -->
+        <div class="col-span-12 md:col-span-8 bento-card">
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="pill text-blue-300">SIH Winner</span>
+            <span class="pill">DRDO Intern</span>
+            <span class="pill text-indigo-300">AI + Security</span>
+            <span class="pill">Full Stack</span>
+          </div>
+
+          <h1 class="text-5xl md:text-7xl font-bold tracking-tighter text-gradient leading-tight mb-6">
+            Hey, I’m Aishwarya. <br class="hidden sm:block"> I build secure systems with premium UX.
+          </h1>
+
+          <p class="text-white/65 text-lg font-light max-w-2xl mb-6 leading-relaxed">
+            A Computer Science Engineering undergraduate at <span class="text-white font-semibold">IGDTUW</span> and
+            <span class="text-white font-semibold">Smart India Hackathon Winner</span>.
+            I work at the intersection of <span class="text-white">full-stack development</span>,
+            <span class="text-white">AI integration</span>, and <span class="text-white">cybersecurity</span>—shipping
+            products that are fast, reliable, and impactful.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="#projects" class="btn btn-primary">View Projects →</a>
+            <a href="https://drive.google.com/file/d/1XqtfXXnnM8mphRb93_FJS_6U4tqrKzYE/view?usp=sharing" target="_blank" class="btn btn-ghost">Download Resume</a>
+            <a href="#contact" class="btn btn-ghost">Contact</a>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-span-12 md:col-span-4 grid gap-6">
+
+          <!-- PHOTO CARD -->
+          <div class="bento-card p-0 overflow-hidden">
+            <div class="p-6 border-b border-white/10">
+              <p class="section-title">Profile</p>
+            </div>
+            <div class="p-6">
+              <div class="avatar-wrap aspect-square">
+                <!-- Put passport_size.png in same folder as index.html -->
+                <img src="./assets/profile.png" class="avatar-img" alt="Aishwarya profile photo">
+
+              </div>
+
+              <div class="mt-5">
+                <p class="text-white font-semibold text-lg">Aishwarya</p>
+                <p class="text-white/55 text-sm mt-1">CSE @ IGDTUW • SIH Winner • Full Stack • AI + Security</p>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="flex gap-3">
+                <a class="btn btn-primary w-full" target="_blank" href="https://www.linkedin.com/in/aishwarya-7b20a532a/">LinkedIn ↗</a>
+                <a class="btn btn-ghost w-full" target="_blank" href="https://github.com/goaish">GitHub ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTACT QUICK -->
+          <div class="bento-card">
+            <p class="section-title mb-4">Contact</p>
+            <div class="space-y-2 text-sm text-white/70">
+              <p><span class="text-white/45">Email:</span> siaish388@gmail.com</p>
+            </div>
+            <div class="divider"></div>
+            <div class="flex flex-col gap-2 text-sm">
+              <a class="hover:text-white text-white/70 transition flex justify-between" target="_blank" href="https://github.com/goaish"><span>GitHub</span><span class="text-white/40">↗</span></a>
+              <a class="hover:text-white text-white/70 transition flex justify-between" target="_blank" href="https://www.linkedin.com/in/aishwarya-7b20a532a/"><span>LinkedIn</span><span class="text-white/40">↗</span></a>
+              <a class="hover:text-white text-white/70 transition flex justify-between" target="_blank" href="https://leetcode.com/u/itsaish/"><span>LeetCode</span><span class="text-white/40">↗</span></a>
+            </div>
+          </div>
+
+          <!-- EDUCATION -->
+          <div class="bento-card">
+            <p class="section-title mb-4">Education</p>
+            <div class="space-y-4">
+              <div>
+                <p class="font-semibold">B.Tech CSE — IGDTUW</p>
+                <p class="text-white/55 text-sm">Aug 2023 – Present • CGPA: 7.28</p>
+              </div>
+              <div>
+                <p class="font-semibold">High School — Maharaja Agrasen Cambridge International School</p>
+                <p class="text-white/55 text-sm">Mar 2021 – Mar 2023 • 85%</p>
+              </div>
+              <div>
+                <p class="font-semibold">Secondary School — Manendra Shakti Vidyalaya</p>
+                <p class="text-white/55 text-sm">Mar 2011 – Mar 2021 • 95%</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="mb-20">
+      <p class="section-title mb-8 ml-2">Technical Skills</p>
+
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 md:col-span-6 bento-card">
+          <h3 class="text-xl font-semibold mb-6">Programming</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="pill">C++</span>
+            <span class="pill">C</span>
+            <span class="pill">Python</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">TypeScript (Working)</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <h3 class="text-xl font-semibold mb-6">Frameworks & Tools</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="pill text-blue-300">React.js</span>
+            <span class="pill">Node.js</span>
+            <span class="pill">Flutter</span>
+            <span class="pill">Dart</span>
+            <span class="pill">Express.js</span>
+          </div>
+        </div>
+
+        <div class="col-span-12 md:col-span-6 bento-card">
+          <h3 class="text-xl font-semibold mb-6">Platforms & CS Fundamentals</h3>
+          <div class="flex flex-wrap gap-3 mb-6">
+            <span class="pill">Git</span>
+            <span class="pill">AWS (Familiar)</span>
+            <span class="pill">LangChain (Basic)</span>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="pill">DSA</span>
+            <span class="pill">OOPS</span>
+            <span class="pill">DBMS</span>
+            <span class="pill">OS</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <h3 class="text-xl font-semibold mb-6">Databases</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="pill">MySQL</span>
+            <span class="pill">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="mb-20">
+      <p class="section-title mb-8 ml-2">Experience</p>
+
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 bento-card">
+          <div class="space-y-8">
+
+            <div class="flex flex-col md:flex-row justify-between gap-4 border-b border-white/10 pb-6">
+              <div>
+                <h4 class="font-semibold text-xl"><span class="accent">Trainee</span> | Telecommunication Engineering Centre (TEC), New Delhi</h4>
+                <p class="text-white/55 text-sm mt-1">Jun 2025 – Jul 2025</p>
+                <ul class="mt-4 text-white/65 text-sm list-disc ml-5 space-y-2">
+                  <li>Researched and prototyped <b>AI-driven Intrusion Detection</b> aligned with TEC standards.</li>
+                  <li>Improved secure infrastructure design for enterprise IT systems with reliable detection workflows.</li>
+                </ul>
+              </div>
+              <span class="pill h-fit w-fit">AI • Security</span>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between gap-4 border-b border-white/10 pb-6">
+              <div>
+                <h4 class="font-semibold text-xl"><span class="accent">Research Intern</span> | SAG, DRDO, New Delhi</h4>
+                <p class="text-white/55 text-sm mt-1">Mar 2025 – Apr 2025</p>
+                <ul class="mt-4 text-white/65 text-sm list-disc ml-5 space-y-2">
+                  <li>Developed and tested <b>AES-128 encryption modules in C</b> for fast, secure data transmission.</li>
+                  <li>Optimized key scheduling and block cipher operations for scalability and reliability.</li>
+                </ul>
+              </div>
+              <span class="pill h-fit w-fit">Cryptography</span>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between gap-4">
+              <div>
+                <h4 class="font-semibold text-xl"><span class="accent">App Developer Intern</span> | COE-AI, IGDTUW, New Delhi</h4>
+                <p class="text-white/55 text-sm mt-1">Jun 2024 – Jul 2024</p>
+                <ul class="mt-4 text-white/65 text-sm list-disc ml-5 space-y-2">
+                  <li>Built and shipped an <b>AI-powered food delivery app</b> using Flutter & Dart.</li>
+                  <li>Designed scalable backend APIs and improved engagement via smart recommendations.</li>
+                </ul>
+              </div>
+              <span class="pill h-fit w-fit">Flutter • AI</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="mb-20">
+      <p class="section-title mb-8 ml-2">Projects</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- YouthUp -->
+        <div class="bento-card p-0 overflow-hidden">
+          <div class="h-56 bg-white/5 border-b border-white/10 flex items-center justify-center relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-indigo-700/10"></div>
+            <span class="relative text-white/35 uppercase tracking-widest text-xs font-semibold">YouthUp</span>
+          </div>
+          <div class="p-8">
+            <h4 class="text-2xl font-semibold mb-2">YouthUp</h4>
+            <p class="text-white/55 text-sm mb-5">Intelligent Precision Planning for Startup and Career Growth</p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="pill">React</span>
+              <span class="pill">Tailwind</span>
+              <span class="pill">Node</span>
+              <span class="pill">Express</span>
+              <span class="pill">PostgreSQL</span>
+              <span class="pill">TensorFlow</span>
+              <span class="pill">GPT-4</span>
+            </div>
+
+            <ul class="text-white/65 text-sm list-disc ml-5 space-y-2 mb-6">
+              <li>Built and deployed an all-in-one platform for young entrepreneurs: networking, mentorship matching, and startup resources.</li>
+              <li>Integrated GPT-4 for personalized suggestions, reminders, and automated responses.</li>
+            </ul>
+
+            <div class="flex gap-3">
+              <a class="btn btn-primary w-full" target="_blank" href="https://youthup-nu.vercel.app/index.html">Live Demo</a>
+              <a class="btn btn-ghost w-full" target="_blank" href="https://github.com/goaish/HACKITUP-YOUTH-UP">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nyaypaksh -->
+        <div class="bento-card p-0 overflow-hidden">
+          <div class="h-56 bg-white/5 border-b border-white/10 flex items-center justify-center relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-fuchsia-700/10"></div>
+            <span class="relative text-white/35 uppercase tracking-widest text-xs font-semibold">Nyaypaksh</span>
+          </div>
+          <div class="p-8">
+            <h4 class="text-2xl font-semibold mb-2">Nyaypaksh</h4>
+            <p class="text-white/55 text-sm mb-5">Streamlining Legal Research for Faster Commercial Dispute Resolution</p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="pill">React</span>
+              <span class="pill">Node</span>
+              <span class="pill">Express</span>
+              <span class="pill">PostgreSQL</span>
+              <span class="pill">LangChain</span>
+              <span class="pill">HuggingFace GenAI</span>
+              <span class="pill">Google Translate</span>
+              <span class="pill">reCAPTCHA</span>
+            </div>
+
+            <div class="mb-5">
+              <span class="pill text-blue-300">SIH 2024 Winning Project</span>
+            </div>
+
+            <ul class="text-white/65 text-sm list-disc ml-5 space-y-2 mb-6">
+              <li>Developed AI-powered legal research platform for commercial courts supporting 500+ case precedents.</li>
+              <li>Enhanced performance, multilingual accessibility, and secure authentication with tested deployments.</li>
+            </ul>
+
+            <div class="flex gap-3">
+              <a class="btn btn-primary w-full" target="_blank" href="https://drive.google.com/file/d/1ZGT5OXCBlg1zrKMS-4ZQxmLL7oMMUif_/view">Live Demo</a>
+              <a class="btn btn-ghost w-full" target="_blank" href="https://github.com/goaish/nyaypaksh_winning">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS + ROLES -->
+    <section id="achievements" class="mb-20">
+      <p class="section-title mb-8 ml-2">Achievements & Leadership</p>
+
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 md:col-span-6 bento-card">
+          <h3 class="text-xl font-semibold mb-6">Achievements</h3>
+          <ul class="text-white/65 text-sm list-disc ml-5 space-y-3">
+            <li><b>McKinsey Forward Program 2025</b> — Selected among top 80 mentees from 18,000+ applicants nationwide (Apr 2025).</li>
+            <li><b>Smart India Hackathon Winner</b> — Ministry of Law & Justice, led a team of 6 and ranked 1st among 150+ teams (Dec 2024).</li>
+          </ul>
+        </div>
+
+        <div class="col-span-12 md:col-span-6 bento-card">
+          <h3 class="text-xl font-semibold mb-6">Roles & Responsibilities</h3>
+          <ul class="text-white/65 text-sm list-disc ml-5 space-y-3">
+            <li><b>Hackathon Judge</b> | IEEE, Manipal University (Jun 2025) — Evaluated solutions and mentored participants on product design and execution.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="bento-card py-16 text-center bg-gradient-to-tr from-white/5 to-white/0">
+      <p class="section-title mb-4">Contact</p>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Let’s build something impactful.</h2>
+      <p class="text-white/60 max-w-2xl mx-auto leading-relaxed mb-10">
+        I’m open to internships, product roles, and collaborations in full-stack development, AI systems, and cybersecurity.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="mailto:siaish388@gmail.com" class="btn btn-primary px-10">Email Me</a>
+        <a href="https://www.linkedin.com/in/aishwarya-7b20a532a/" target="_blank" class="btn btn-ghost px-10">LinkedIn ↗</a>
+        <a href="https://github.com/goaish" target="_blank" class="btn btn-ghost px-10">GitHub ↗</a>
+      </div>
+
+      <div class="mt-10 text-white/40 text-xs tracking-widest uppercase">
+        LeetCode • GitHub • LinkedIn • Resume
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="text-center py-10 text-white/35 text-[11px] uppercase tracking-[0.3em]">
+    Built by Aishwarya • © 2026
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from("nav", { y: -25, opacity: 0, duration: 0.8, ease: "power3.out" });
+
+    gsap.utils.toArray(".bento-card").forEach((card) => {
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: 26 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 86%",
+          },
+        }
+      );
+    });
+  </script>
+
+</body>
+</html>
